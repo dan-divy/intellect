@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>intellect/login</title>
+    <%- include("../header") -%>
+  </head>
+  <body>
+    <div class="container-fluid">
+    <h2>
+        <img src="/images/logo/animal.png" class="logo">
+            intellect
+    </h2>
+    </div>
+    <br>
+    <br>
+    <div class="col-sm-6 col-sm-offset-3">
+        <!-- show any messages that come back with authentication -->
+        <% if (error) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+        <% } %>
+        <!-- GOOGLE SIGNIN -->
+          <a href="/authorize/google" class="btn form-control btn-info">Sign in with Google</a>
+      </div>
+  </body>
+</html>

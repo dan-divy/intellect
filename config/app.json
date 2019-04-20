@@ -1,0 +1,24 @@
+{
+	"name":"intellect",
+	"title":"intellect",
+	"commands":{
+		"package":"electron-packager electron.js intellect --electronVersion=2.0.12 --overwrite --icon=/public/images/logo/logo.png --prune=true --out=release",
+		"build":""
+	},
+	"http": {
+		"host":"localhost",
+		"port":80
+	},
+	"author":"Divy Srivastava",
+	"version":"2.0.0",
+	"db": {
+		"connectionUri":"mongodb://localhost:27017/intellect",
+		"params": {},
+		"collections": [
+			"moment",
+			"user",
+			"feeling",
+			"ask"
+		]
+	}
+}

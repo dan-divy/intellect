@@ -1,0 +1,31 @@
+{
+  "name": "intellect",
+  "version": "1.0.0",
+  "description": "A Brainly alternate built using Node.js and MongoDB",
+  "main": "app.js",
+  "dependencies": {
+    "mongoose": "^5.3.13",
+    "mv": "^2.1.1",
+    "newsapi": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DivySrivastava/intellect.git"
+  },
+  "keywords": [
+    "brainly",
+    "open-source",
+    "study",
+    "intellect"
+  ],
+  "author": "Divy Srivastava <dj.srivastava23@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DivySrivastava/intellect/issues"
+  },
+  "homepage": "https://github.com/DivySrivastava/intellect#readme"
+}
