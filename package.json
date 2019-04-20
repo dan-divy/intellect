@@ -5,8 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "mongoose": "^5.3.13",
-    "mv": "^2.1.1",
-    "newsapi": "^2.4.0"
+    "newsapi": "^2.4.0",
+    "mv": "^2.1.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,13 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/DivySrivastava/intellect.git"
   },
-  "keywords": [
-    "brainly",
-    "open-source",
-    "study",
-    "intellect"
-  ],
-  "author": "Divy Srivastava <dj.srivastava23@gmail.com>",
+  "author": "Divy Srivastava and DanCodes",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DivySrivastava/intellect/issues"
