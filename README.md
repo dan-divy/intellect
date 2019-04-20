@@ -1,4 +1,4 @@
-![](./public/images/logo.png) 
+![](./public/images/banner-transparent.png) 
 # Intellect 
 A Brainly alternate built with Node.js and MongoDB
 # Logo
