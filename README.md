@@ -1,4 +1,4 @@
-![](./doc-src/assets/images/banner-transparent.png)
+![](./public/images/banner-transparent.png)
 # Intellect
 A Brainly alternate built with Node.js and MongoDB
 # Logo
@@ -11,3 +11,9 @@ Colors:
  * Grey:   rgb(99,97,81)
 # Todo
  *
+# Inventory of the bucket
+Here are some ideas and a place to put stuff while we think about it
+## Inventory
+  * Loading bar
+    * Has colors from icon
+    * Simple, pure css
