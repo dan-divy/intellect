@@ -32,7 +32,7 @@
   width:200px;
   height:200px;
   border-radius: 20px;
-  border:2px solid #18bc9c;
+  border:2px solid var(--primary);
 }
 .upload-btn-wrapper {
   position: relative;
