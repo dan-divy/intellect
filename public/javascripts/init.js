@@ -25,3 +25,7 @@ window.changeTheme = function () {
     //default: window.toggleLightMode();
   }
 }
+
+window.onload = function() {
+  $('.box').fadeOut('slow')
+}
