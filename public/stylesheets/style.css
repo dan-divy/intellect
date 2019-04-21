@@ -16,6 +16,9 @@
     padding-right: 20%;
   }
 }
+:root {
+  --primary: rgb(0,187,151);
+}
 .tilted-div {
   /*background-image: linear-gradient(150deg,#dd27c6 0%,#8805ff 100%);
     position: absolute;
@@ -102,7 +105,7 @@ a {
 }
 
 .notify_message-success{
-    background-color: #26B99A;
+    background-color: var(--primary);
 }
 
 .notify_message-danger{
