@@ -12,16 +12,20 @@ router.get('/login', function(req, res, next) {
   // Render the login page.
     res.render('auth/login', {error:false});
 });
+router.get('/signup', function(req, res, next) {
+  // Render the login page.
+    res.render('auth/signup', {error:false});
+});
 
 /** signup page. **/
-router.get('/:service', function(req, res, next) {
+router.get('/oauth/:service', function(req, res, next) {
   // Redirect to the Google login.
   res.redirect("/")
 
 });
 
 router.get('/signup', function(req, res, next) {
-  
+
   res.redirect("/")
 
 });
