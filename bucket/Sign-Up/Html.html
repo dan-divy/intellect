@@ -4,13 +4,14 @@
     <div id="login-box">
       <div class="left">
         <h1>Sign up for <b style="color:rgb(0,187,151)">Intellect</b></h1>
-        
-        <input type="text" name="username" placeholder="Username" />
-        <input type="text" name="email" placeholder="E-mail" />
-        <input type="password" name="password" id="password" placeholder="Password" />
-        <input type="password" name="password2" id="password2" placeholder="Retype password" />
-        
-        <input type="submit" name="signup_submit" value="Sign me up" />
+        <form method="POST" action="/authorize/signup">
+          <input type="text" name="username" placeholder="Username" />
+          <input type="text" name="email" placeholder="E-mail" />
+          <input type="password" name="password" id="password" placeholder="Password" />
+          <input type="password" name="password2" id="password2" placeholder="Retype password" />
+          
+          <input type="submit" name="signup_submit" value="Sign me up" />
+        </form> 
       </div>
       
       <div class="right">

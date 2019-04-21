@@ -20,6 +20,11 @@ router.get('/:service', function(req, res, next) {
 
 });
 
+router.get('/signup', function(req, res, next) {
+  
+  res.redirect("/")
+
+});
 /** logout. **/
 router.get('/logout', function(req, res, next) {
   // Destroy the session and redirect back to home.
