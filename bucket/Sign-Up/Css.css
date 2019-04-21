@@ -2,18 +2,36 @@
 *:focus {
   outline: none;
 }
-
 body {
-  margin: 0;
-  padding: 0;
-  background: #DDD;
   font-size: 16px;
   color: #222;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
-
+/*#image {
+  background-image: url(./image.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  height: 100%; 
+  -webkit-filter: blur(8px);
+}*/
+.image {
+  position: relative;
+}
+.image::before {
+  content: "";
+  position: absolute;
+  width: 100%; height: 100%;
+  background-image: url(image.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(6px);
+}
 #login-box {
+  filter: blur(0px) !important;
   position: relative;
   margin: 5% auto;
   width: 600px;
@@ -57,8 +75,8 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-  border-bottom: 2px solid #16a085;
-  color: #16a085;
+  border-bottom: 2px solid rgb(0,187,151);
+  color: rgb(0,187,151);
   transition: 0.2s ease;
 }
 
@@ -66,7 +84,7 @@ input[type="submit"] {
   margin-top: 28px;
   width: 120px;
   height: 32px;
-  background: #16a085;
+  background: rgb(0,187,151);
   border: none;
   border-radius: 2px;
   color: #FFF;
@@ -150,13 +168,13 @@ button.social-signin:active {
 }
 
 button.social-signin.facebook {
-  background: #32508E;
+  background: rgb(0,187,151)
 }
 
 button.social-signin.twitter {
-  background: #55ACEE;
+  background:  rgb(0,187,151)
 }
 
 button.social-signin.google {
-  background: #DD4B39;
+  background:  rgb(0,187,151)
 }
