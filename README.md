@@ -14,5 +14,4 @@ Colors:
 # Inventory of the bucket
 Here are some ideas and a place to put stuff while we think about it
   * Loading bar
-    * Has colors from icon
-    * Simple, pure css
+  * Sign-Up 
