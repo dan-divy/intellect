@@ -7,8 +7,8 @@
         
         <input type="text" name="username" placeholder="Username" />
         <input type="text" name="email" placeholder="E-mail" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="password" name="password2" placeholder="Retype password" />
+        <input type="password" name="password" id="password" placeholder="Password" />
+        <input type="password" name="password2" id="password2" placeholder="Retype password" />
         
         <input type="submit" name="signup_submit" value="Sign me up" />
       </div>
@@ -22,5 +22,8 @@
       </div>
       <div class="or">OR</div>
     </div>
+    <script>
+      document.getElementById('password2').onkeyup = function() {let verify = document.getElementById('password2');let password = document.getElementById('password');if(verify.value == password.value) {verify.style.borderColor = 'lime';} else {verify.style.borderColor = 'red';};}
+    </script>
   </body>
 </html>
