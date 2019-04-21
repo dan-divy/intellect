@@ -164,3 +164,64 @@ a {
 		transform: translate(-50%,-50%) rotate(-30deg);
 	}
 }
+body{
+	margin: 0;
+	padding: 0;
+	background: #fff;
+}
+.box{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	overflow: hidden;
+}
+.box .b{
+		border-radius: 50%;
+	border-left: 4px solid;
+	border-top: 4px solid transparent !important;
+	border-right: 4px solid;
+	border-bottom: 4px solid transparent !important;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	animation: ro 2s infinite;
+
+}
+.box .b1{
+	border-color: rgb(0,187,151);
+	width: 120px;
+	height: 120px;
+}
+.box .b2{
+	border-color: rgb(235,56,55);
+	width: 100px;
+	height: 100px;
+	animation-delay: 0.2s;
+}
+.box .b3{
+	border-color: rgb(242,215,71);
+	width: 80px;
+	height: 80px;
+	animation-delay: 0.4s;
+}
+.box .b4{
+	border-color: rgb(99,97,81);
+	width:60px;
+	height: 60px;
+	animation-delay: 0.6s;
+}
+@keyframes ro{
+	0%{
+		transform: translate(-50%,-50%) rotate(0deg);
+	}
+	50%{
+		transform: translate(-50%,-50%) rotate(-180deg);
+	}
+	100%{
+		transform: translate(-50%,-50%) rotate(0deg);
+	}
+}
