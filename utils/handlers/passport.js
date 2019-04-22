@@ -58,13 +58,10 @@ module.exports = function(passport) {
                     return done(null, user);
                 } else {
                     // if the user isnt in our database, create a new user
-                    var newUser          = new User();
-
+                    var newUser = new User();
+                    var goo = {id: profile.id, token, name:profile.displayName, email:profile.emails[0].value}
                     // set all of the relevant information
-                    newUser.google.id    = profile.id;
-                    newUser.google.token = token;
-                    newUser.google.name  = profile.displayName;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
+                    newUser.google = goo;
 
                     // save the user
                     newUser.save(function(err) {

@@ -2,10 +2,12 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var session = require('express-session');
+var passport = require('passport');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var passportHandler = require('./utils/handlers/passport');
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authorize');
 
@@ -22,6 +24,7 @@ var cooky = {
   	saveUninitialized: true
 }
 
+passportHandler(passport);
 app.set('trust proxy', 1) // trust first proxy
 app.use(session(cooky))
 app.use(logger('dev'));
@@ -29,6 +32,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', indexRouter);
 app.use('/authorize', authRouter);

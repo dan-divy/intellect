@@ -8,29 +8,31 @@ var array_tools = require("array-tools");
 /** Other important utilities **/
 var user = require('../utils/handlers/user');
 const authConf = require('../config/oauth.js');
-/** login page. **/
-router.get('/login', function(req, res, next) {
-  // Render the login page.
-    res.render('auth/login', {error:false});
-});
-/** signup page. **/
+
+
+router.get('/', (req, res) => {
+  res.render('auth/login', {error:false});
+})
+
 router.get('/:oauth_service', function(req, res, next) {
   // Redirect to the OAuth service page.
   switch (req.params.oauth_service) {
     case "google":
-      passport.authenticate('google', { scope : ['profile', 'email']})
+      res.redirect(authConf.google.auth_url)
       break;
     case "facebook":
-      res.redirect(authConf.facebook.redirect_url);
+      res.redirect(authConf.facebook.auth_url);
       break;
+    default: 
+      res.render('auth/login')
    }
 });
 
-router.get('/auth/google/callback',
-            passport.authenticate('google', {
-                    successRedirect : '/',
-                    failureRedirect : '/err'
-            }));
+
+router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
+  req.session.user = req.session.passport.user._json; 
+  res.redirect("/");
+});
 
 /** logout. **/
 router.get('/logout', function(req, res, next) {
