@@ -10,9 +10,6 @@ var user = require('../utils/handlers/user');
 const authConf = require('../config/oauth.js');
 
 
-router.get('/', (req, res) => {
-  res.render('auth/login', {error:false});
-})
 
 router.get('/:oauth_service', function(req, res, next) {
   // Redirect to the OAuth service page.
@@ -24,10 +21,13 @@ router.get('/:oauth_service', function(req, res, next) {
       res.redirect(authConf.facebook.auth_url);
       break;
     default: 
-      res.render('auth/login')
+      next();
    }
 });
 
+router.get('/', (req, res) => {
+  res.render('auth/login', {error:false});
+})
 
 router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
   req.session.user = req.session.passport.user._json; 
@@ -36,8 +36,7 @@ router.get("/auth/google/callback", passport.authenticate("google"), (req, res) 
 
 /** logout. **/
 router.get('/logout', function(req, res, next) {
-  // Destroy the session and redirect back to home.
-    res.session.destroy(() => {
+    req.session.destroy(() => {
       res.redirect('/');
     });
 });
