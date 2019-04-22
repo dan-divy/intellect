@@ -2,13 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>intellect/login</title>
+    <title>intellect</title>
     <%- include("../header") -%>
   </head>
   <body>
     <div class="container-fluid">
     <h2>
-        <img src="/images/logo/animal.png" class="logo">
+        <img src="/images/logo.png" class="logo">
             intellect
     </h2>
     </div>
@@ -22,7 +22,9 @@
         </div>
         <% } %>
         <!-- GOOGLE SIGNIN -->
+        <h1>Sign in for <b style="color:rgb(0,187,151)">Intellect</b></h1>
           <a href="/authorize/google" class="btn form-control btn-info">Sign in with Google</a>
+          <a href="/authorize/facebook" class="btn form-control btn-fb-login">Sign in with Facebook</a>
       </div>
   </body>
 </html>

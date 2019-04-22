@@ -11,9 +11,9 @@ const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('a4c4e845fea64f9e9c72541aa354a29e').v2;
 
 /** Home page. **/
-router.get('/',isAuth, function(req, res, next) {
+router.get('/',isLoggedIn, function(req, res, next) {
   // Once user has logged in, show the home page.
-    res.render('index', {user:{name:req.session.user,id:req.session._id}})
+    res.render('index', {user:{name:req.user}})
 });
 
 /**
@@ -25,17 +25,15 @@ router.get('/',isAuth, function(req, res, next) {
  * @api private
  */
 
-function isAuth(req, res, next) {
-  // If Request.Session has the details of user, proceed.
-//if(req.session._id && req.session.user) {
-    next() // Continue with the user.
-  //}
-  // Else redirect the user back to the login page for authentication.
-  //else {
-    //res.render('auth/login',{
-    //  error:false // No error to be shown.
-    //})
-  //}
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/authorize');
 }
 
 // Expose the Express HTTP `index` router to main app.

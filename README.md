@@ -10,8 +10,8 @@ Colors:
  * Yellow: rgb(242,215,71)
  * Grey:   rgb(99,97,81)
 # Todo
- *
+ * Google and Facebook OAuth as everyone has a Google or Facebook account.
 # Inventory of the bucket
 Here are some ideas and a place to put stuff while we think about it
   * Loading bar
-  * Sign-Up 
+  * Sign-Up
