@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 /** Some useful dependencies **/
 var passport = require("passport");
+//require("../utils/handlers/passport_facebook")(passport)
 var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
@@ -20,7 +21,7 @@ router.get('/:oauth_service', function(req, res, next) {
     case "facebook":
       res.redirect(authConf.facebook.auth_url);
       break;
-    default: 
+    default:
       next();
    }
 });
@@ -30,7 +31,12 @@ router.get('/', (req, res) => {
 })
 
 router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
-  req.session.user = req.session.passport.user._json; 
+  req.session.user = req.session.passport.user._json;
+  res.redirect("/");
+});
+
+router.get("/auth/facebook/callback", passport.authenticate("facebook"), (req, res) => {
+  req.session.user = req.session.passport.user._json;
   res.redirect("/");
 });
 
