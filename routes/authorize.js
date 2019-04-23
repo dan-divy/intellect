@@ -26,6 +26,8 @@ router.get('/:oauth_service', function(req, res, next) {
    }
 });
 
+router.get('/twitter', passport.authenticate('twitter'));
+
 router.get('/', (req, res) => {
   res.render('auth/login', {error:false});
 })
@@ -36,6 +38,12 @@ router.get("/auth/google/callback", passport.authenticate("google"), (req, res) 
 });
 
 router.get("/auth/facebook/callback", passport.authenticate("facebook"), (req, res) => {
+  req.session.user = req.session.passport.user._json;
+  res.redirect("/");
+});
+
+
+router.get("/auth/twitter/callback", passport.authenticate("twitter"), (req, res) => {
   req.session.user = req.session.passport.user._json;
   res.redirect("/");
 });
