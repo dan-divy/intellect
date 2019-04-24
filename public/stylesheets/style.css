@@ -16,7 +16,7 @@
   border-width: 0;
   background-color: #fff;
   color: #737373;
-  border-radius: 5px;
+  border-radius: 3px;
   white-space: nowrap;
   box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
   transition-property: background-color, box-shadow;
@@ -46,7 +46,7 @@
 }
 
 .google-button__icon--plus {
-  width: 27px;
+  width: 17px;/* 27 */
 }
 
 .google-button__text {
