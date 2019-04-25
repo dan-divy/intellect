@@ -11,7 +11,6 @@ var user = require('../utils/handlers/user');
 const authConf = require('../config/oauth.js');
 
 
-
 router.get('/:oauth_service', function(req, res, next) {
   // Redirect to the OAuth service page.
   switch (req.params.oauth_service) {
@@ -27,9 +26,17 @@ router.get('/:oauth_service', function(req, res, next) {
 });
 
 router.get('/twitter', passport.authenticate('twitter'));
+router.post('/spruce', passport.authenticate('local'), (req, res) => {
+  req.session.user = req.session.passport.user._json;
+  res.redirect('/');
+});
 
 router.get('/', (req, res) => {
   res.render('auth/login', {error:false});
+});
+
+router.get('/new', (req, res) => {
+  res.render('auth/signup', {error:false});
 })
 
 router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
