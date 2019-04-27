@@ -40,7 +40,21 @@ module.exports = function(passport) {
 
     User.findOne({ 'local.username': username }, function (err, user) {
       if (err) { return done(err); }
-      console.log(user)
+      if(!req.body.firstname || !req.body.lastname) {
+        if(user) {
+        bcrypt.compare(password,user.local.password, (error ,matches)=> {
+          if(matches) {
+            return done(null, user);
+          }
+          else {
+            return done(null, false);
+          }
+        })
+      }
+      else {
+        done(null,false)
+      }
+      }
       if (!user) {
        var newUser = new User();
         newUser.local = {
@@ -54,16 +68,7 @@ module.exports = function(passport) {
         })
 
        }
-       else {
-          bcrypt.compare(password,user.local.password, (error ,matches)=> {
-            if(matches) {
-              return done(null, user);
-            }
-            else {
-              return done(null, false);
-            }
-          })
-        }
+
     });
   }
 ));
