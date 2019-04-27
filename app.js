@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-//var passportHandlerLocal = require('./utils/handlers/passport_local')
+var passportHandlerLocal = require('./utils/handlers/passport_local')
 var passportHandler = require('./utils/handlers/passport');
 var passportHandlerFb = require('./utils/handlers/passport_facebook');
 var passportHandlerTwitter = require('./utils/handlers/passport_twitter');
@@ -27,8 +27,7 @@ var cooky = {
   	expires: new Date() * 60 * 60 * 24 * 30,
   	saveUninitialized: true
 }
-
-// passportHandlerLocal(passport);
+passportHandlerLocal(passport);
 passportHandler(passport);
 passportHandlerFb(passport);
 passportHandlerTwitter(passport);

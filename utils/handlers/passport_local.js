@@ -1,7 +1,8 @@
 // config/passport.js
 
 // load all the things we need
-var LocalStrategy    = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt-nodejs');
 //var FacebookStrategy = require('passport-facebook').Strategy;
 //var TwitterStrategy  = require('passport-twitter').Strategy;
 
@@ -32,12 +33,28 @@ module.exports = function(passport) {
     // =========================================================================
     // TWITTER =================================================================
     // =========================================================================
-    passport.use(new LocalStrategy(
-  function(username, password, done) {
+    passport.use(new LocalStrategy({
+      passReqToCallback:true
+    },
+  function(req, username, password, done) {
+
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
+      console.log(user)
+      if (!user) {
+       var newUser = new User();
+        newUser.local = {
+          username:username,
+          password:newUser.generateHash(password),
+          firstname:req.body.firstname,
+          lastname:req.body.lastname
+        }
+        newUser.save((err, res) => {
+              return done(null, user);
+        })
+
+       }
+      else if (!bcrypt.compare(password,user.local.password)) { return done(null, false); }
       return done(null, user);
     });
   }
