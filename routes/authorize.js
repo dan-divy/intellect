@@ -26,13 +26,19 @@ router.get('/:oauth_service', function(req, res, next) {
 });
 
 router.get('/twitter', passport.authenticate('twitter'));
-router.post('/spruce', passport.authenticate('local'), (req, res) => {
-  req.session.user = req.session.passport.user._json;
-  res.redirect('/');
+router.post('/spruce',(req, res) => {
+   passport.authenticate('local',(error, user) => {
+     req.session.user = user;
+     res.end('<script>window.location.href="/";</script>')
+   })(req,res)
 });
 
 router.get('/', (req, res) => {
   res.render('auth/login', {error:false});
+});
+
+router.get('/login', (req, res) => {
+  res.render('auth/local', {error:false});
 });
 
 router.get('/new', (req, res) => {

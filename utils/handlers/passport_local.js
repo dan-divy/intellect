@@ -31,14 +31,14 @@ module.exports = function(passport) {
     // code for facebook (use('facebook', new FacebookStrategy))
 
     // =========================================================================
-    // TWITTER =================================================================
+    // LOCAl =================================================================
     // =========================================================================
     passport.use(new LocalStrategy({
       passReqToCallback:true
     },
   function(req, username, password, done) {
 
-    User.findOne({ username: username }, function (err, user) {
+    User.findOne({ 'local.username': username }, function (err, user) {
       if (err) { return done(err); }
       console.log(user)
       if (!user) {
@@ -50,12 +50,20 @@ module.exports = function(passport) {
           lastname:req.body.lastname
         }
         newUser.save((err, res) => {
-              return done(null, user);
+              return done(null, res);
         })
 
        }
-      else if (!bcrypt.compare(password,user.local.password)) { return done(null, false); }
-      return done(null, user);
+       else {
+          bcrypt.compare(password,user.local.password, (error ,matches)=> {
+            if(matches) {
+              return done(null, user);
+            }
+            else {
+              return done(null, false);
+            }
+          })
+        }
     });
   }
 ));

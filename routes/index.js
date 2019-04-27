@@ -13,7 +13,7 @@ const newsapi = new NewsAPI('a4c4e845fea64f9e9c72541aa354a29e').v2;
 /** Home page. **/
 router.get('/',isLoggedIn, function(req, res, next) {
   // Once user has logged in, show the home page.
-    res.render('index', {user:{name:req.user}})
+    res.render('index', {user:{name:req.session.user}})
 });
 
 /**
@@ -29,7 +29,7 @@ router.get('/',isLoggedIn, function(req, res, next) {
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
+    if (req.session.user)
         return next();
 
     // if they aren't redirect them to the home page
