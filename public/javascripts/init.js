@@ -37,8 +37,11 @@ $.ajax({
     console.log(response)
     setTimeout(function () {
       $('.box').fadeOut('slow');
-    }, 5000);
-  }
+    }, 5000); // Time taken to quickly read the joke.
+  },
+  error: function (response) {
+  $('.box').fadeOut('slow');
+}
 });
 /** window.onload = function() {
   $('.box').fadeOut('slow');
