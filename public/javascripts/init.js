@@ -25,7 +25,21 @@ window.changeTheme = function () {
     //default: window.toggleLightMode();
   }
 }
-
-window.onload = function() {
-  $('.box').fadeOut('slow')
-}
+$.ajax({
+  headers: {
+    Accept: "text/plain; charset=utf-8",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  method: 'GET',
+  url:"https://icanhazdadjoke.com/slack",
+  success : function(response) {
+    $("#quote").text('"'+response.attachments[0].text+'"');
+    console.log(response)
+    setTimeout(function () {
+      $('.box').fadeOut('slow');
+    }, 10000);
+  }
+});
+/** window.onload = function() {
+  $('.box').fadeOut('slow');
+}**/
