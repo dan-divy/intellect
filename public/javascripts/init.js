@@ -37,7 +37,7 @@ $.ajax({
     console.log(response)
     setTimeout(function () {
       $('.box').fadeOut('slow');
-    }, 10000);
+    }, 5000);
   }
 });
 /** window.onload = function() {
