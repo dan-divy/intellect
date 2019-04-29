@@ -20,16 +20,17 @@ router.get('/:oauth_service', function(req, res, next) {
     case "facebook":
       res.redirect(authConf.facebook.auth_url);
       break;
+    case "twitter":
+      res.redirect(authConf.twitter.auth_url)
     default:
       next();
    }
 });
 
-router.get('/twitter', passport.authenticate('twitter'));
 router.post('/spruce',(req, res) => {
    passport.authenticate('local',(error, user) => {
      req.session.user = user;
-     res.end('<script>window.location.href="/";</script>')
+     res.redirect("/")
    })(req,res)
 });
 
@@ -46,6 +47,11 @@ router.get('/new', (req, res) => {
 })
 
 router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
+  req.session.user = req.session.passport.user._json;
+  res.redirect("/");
+});
+
+router.get("/auth/twitter/callback", passport.authenticate("twitter"), (req, res) => {
   req.session.user = req.session.passport.user._json;
   res.redirect("/");
 });

@@ -9,6 +9,7 @@ var google_client_id = "<GOOGLE_CLIENT_ID>";
     twitter_api_key = "<TWITTER_API_KEY>"
     twitter_api_secret = "<TWITTER_API_SECRET>";
     twitter_redirect_url = "<host>:<port>/authorize/auth/twitter/callback"
+    twitter_auth_url = "<fill in here>"
 module.exports = {
           "google": {
               "client_id":google_client_id,
@@ -26,5 +27,6 @@ module.exports = {
             "client_id":twitter_api_key,
             "client_secret":twitter_api_secret,
             "redirect_url":twitter_redirect_url,
+            "auth_url":twitter_auth_url
           }
   }
