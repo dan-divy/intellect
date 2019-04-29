@@ -1,4 +1,4 @@
-[]![intellect-banner](./public/images/banner-transparent.png)](https://intellect.dancodes.online)
+[![intellect-banner](./public/images/banner-transparent.png)](https://intellect.dancodes.online)
 
 Deployed on a DigitalOcean droplet [here](http://intellect.dancodes.online/).                                            
 A powerful open-source real-time question and answer platform for students. An alternate for [Brainly](http://brainly.co) built with Node.js and MongoDB
