@@ -1,3 +1,4 @@
+
 window.addEventListener('load',function () {
     window.theme = localStorage.getItem("theme");
     switch (window.theme) {
@@ -9,13 +10,14 @@ window.addEventListener('load',function () {
         break;
       //default: window.toggleLightMode();
     }
+
 });
 
 
 
 window.changeTheme = function () {
-
-  switch (localStorage.getItem("theme")) {
+  var theme = localStorage.getItem("theme") || "light";
+  switch (theme) {
     case "dark":
       window.toggleLightMode();
       break;
@@ -41,9 +43,12 @@ $.ajax({
   },
   error: function (response) {
     $("#quote").text('"Maturity is when you understand that you are imature."');
-  $('.box').fadeOut('slow');
+    setTimeout(function () {
+      $('.box').fadeOut('slow');
+    }, 5000); // Time taken to quickly read the joke.
 }
 });
+
 /** window.onload = function() {
   $('.box').fadeOut('slow');
 }**/
