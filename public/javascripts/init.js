@@ -35,17 +35,17 @@ $.ajax({
   method: 'GET',
   url:"https://icanhazdadjoke.com/slack",
   success : function(response) {
-    $("#quote").text('"'+response.attachments[0].text+'"');
-    console.log(response)
+    document.getElementById("quote").innerHTML = `<a href="${response.attachments[0].footer.split('<')[1].split('|')[0]}">"${response.attachments[0].text}"</a>`;
+        console.log(response)
     setTimeout(function () {
       $('.box').fadeOut('slow');
-    }, 5000); // Time taken to quickly read the joke.
+    }, 2000); // Time taken to quickly read the joke.
   },
   error: function (response) {
     $("#quote").text('"Maturity is when you understand that you are imature."');
     setTimeout(function () {
       $('.box').fadeOut('slow');
-    }, 5000); // Time taken to quickly read the joke.
+    }, 2000); // Time taken to quickly read the joke.
 }
 });
 

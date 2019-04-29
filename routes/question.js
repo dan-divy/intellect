@@ -7,7 +7,7 @@ var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
 const User = require('../utils/handlers/user');
-const Question = require('../utils/handlers/question');
+const Question = require('../utils/models/question');
 
 const authConf = require('../config/oauth.js');
 
