@@ -10,7 +10,9 @@
     padding-right: 20%;
   }
 }
-
+.dark {
+  color:#2c3e50;
+}
 .google-button {
   height: 40px;
   border-width: 0;

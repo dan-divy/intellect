@@ -40,6 +40,7 @@ $.ajax({
     }, 5000); // Time taken to quickly read the joke.
   },
   error: function (response) {
+    $("#quote").text('"Maturity is when you understand that you are imature."');
   $('.box').fadeOut('slow');
 }
 });
