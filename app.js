@@ -14,6 +14,7 @@ var passportHandlerTwitter = require('./utils/handlers/passport_twitter');
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authorize');
+var questionRouter = require('./routes/question');
 
 var app = express();
 app.conf = require('./config/app')
@@ -27,6 +28,7 @@ var cooky = {
   	expires: new Date() * 60 * 60 * 24 * 30,
   	saveUninitialized: true
 }
+
 passportHandlerLocal(passport);
 passportHandler(passport);
 passportHandlerFb(passport);
@@ -45,6 +47,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/authorize', authRouter);
+app.use('/ask', questionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
