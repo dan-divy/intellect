@@ -21,7 +21,8 @@ router.get('/:oauth_service', function(req, res, next) {
       res.redirect(authConf.facebook.auth_url);
       break;
     case "twitter":
-      res.redirect(authConf.twitter.auth_url)
+      //res.redirect(authConf.twitter.auth_url)
+      passport.authenticate('twitter')(req, res, next)
     default:
       next();
    }
