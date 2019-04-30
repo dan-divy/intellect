@@ -15,6 +15,7 @@ var passportHandlerTwitter = require('./utils/handlers/passport_twitter');
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authorize');
 var questionRouter = require('./routes/question');
+var questionByIdRouter = require('./routes/questionById');
 
 var app = express();
 app.conf = require('./config/app')
@@ -48,6 +49,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/authorize', authRouter);
 app.use('/ask', questionRouter);
+app.use('/question', questionByIdRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

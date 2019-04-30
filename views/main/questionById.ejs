@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>intellect/home</title>
+    <%- include("../header") -%>
+  </head>
+  <body>
+    <%- include("../navbar") -%>
+    <br>
+    <div class="container">
+      <% if(question) { %>
+        <blockquote>
+          <%= question.question %>
+          <br>
+          <span class="text-muted">Asked by <%= question.by %> @ <%= question.date %></span>
+        </blockquote>
+      <% } %>
+    </div>
+
+  <%- include("../footer") %>
+  </body>
+</html>
