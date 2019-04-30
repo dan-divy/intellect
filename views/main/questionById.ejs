@@ -13,8 +13,20 @@
         <blockquote>
           <%= question.question %>
           <br>
-          <span class="text-muted">Asked by <%= question.by %> @ <%= question.date %></span>
+          <span class="text-muted" style="font-size:14px;">Asked by <%= question.by %> <%= question.timeago %></span>
         </blockquote>
+        <br>
+        <div class="container">
+          <% for(var i=0;i<question.answers.length;i++) { %>
+            <blockquote>
+
+            </blockquote>
+          <% } %>
+        </div>
+        <br>
+        <textarea name="answer" class="form-control" placeholder="answer_goes_here"></textarea>
+        <br>
+        <button type="submit" class="btn btn-action btn-warning">ANSWER AS @<%= user.username %></button>
       <% } %>
     </div>
 

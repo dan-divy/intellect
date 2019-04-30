@@ -44,7 +44,7 @@ module.exports = function(passport) {
         if(user) {
         bcrypt.compare(password,user.local.password, (error ,matches)=> {
           if(matches) {
-            return done(null, user);
+            return done(null, user.local);
           }
           else {
             return done(null, false);
@@ -64,7 +64,7 @@ module.exports = function(passport) {
           lastname:req.body.lastname
         }
         newUser.save((err, res) => {
-              return done(null, res);
+              return done(null, res.local);
         })
 
        }

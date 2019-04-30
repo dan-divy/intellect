@@ -15,19 +15,22 @@ const authConf = require('../config/oauth');
 /** DISPLAY QUESTIONS **/
 router.get('/:id', (req, res) => {
   var query = req.params.id;
-  //if(query) {
+  if(query) {
     Question
     .findOne({_id:query})
     .exec((err, obj) => {
-      console.log(obj)
+      console.log(req.session.user)
+      obj.timeago = ta.ago(obj.date);
+      
       res.render('main/questionById',{
-        question:obj
+        question:obj,
+        user:req.session.user
       });
     })
-//  }
-  //else {
-//    res.redirect('/ask')
-  //}
+ }
+else {
+    res.redirect('/ask')
+  }
 })
 
 

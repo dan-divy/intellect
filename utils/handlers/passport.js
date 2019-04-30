@@ -55,7 +55,7 @@ module.exports = function(passport) {
                 if (user) {
 
                     // if a user is found, log them in
-                    return done(null, user);
+                    return done(null, user.google);
                 } else {
                     // if the user isnt in our database, create a new user
                     var newUser = new User();
@@ -64,10 +64,10 @@ module.exports = function(passport) {
                     newUser.google = goo;
 
                     // save the user
-                    newUser.save(function(err) {
+                    newUser.save(function(err,result) {
                         if (err)
                             throw err;
-                        return done(null, newUser);
+                        return done(null, result.google);
                     });
                 }
             });

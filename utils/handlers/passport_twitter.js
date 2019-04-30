@@ -54,16 +54,16 @@ module.exports = function(passport) {
 
                 // if the user is found then log them in
                 if (user) {
-                    return done(null, user); // user found, return that user
+                    return done(null, user.twitter); // user found, return that user
                 } else {
                     // if there is no user, create them
                     var newUser = new User();
                     newUser.twitter = {id:profile.id,token,username:profile.username,displayName:profile.displayName}
                     // save our user into the database
-                    newUser.save(function(err) {
+                    newUser.save(function(err, result) {
                         if (err)
                             throw err;
-                        return done(null, newUser);
+                        return done(null, result.twitter);
                     });
                 }
             });

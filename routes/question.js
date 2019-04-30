@@ -39,7 +39,7 @@ router.post('/',formParser, (req, res) => {
     answers:[],
     subject:subjectConf[req.body.subject],
     points:req.body.points,
-    by:req.session.user,
+    by:req.session.user.username,
     views:0
   })
   newQuestion.save((err, q) => {

@@ -31,7 +31,9 @@ router.get('/:oauth_service', function(req, res, next) {
 router.post('/spruce', (req, res) => {
    passport.authenticate('local',(error, user) => {
      req.session.user = user;
-     res.redirect("/")
+     // DO NOT CHANGE THE BELOW CODE!
+     res.end("<script>window.location.href='/';</script>");
+     // SEE ISSUE FOR DETAILS...
    })(req,res)
 });
 
