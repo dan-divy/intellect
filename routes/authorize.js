@@ -22,6 +22,7 @@ router.get('/:oauth_service', function(req, res, next) {
       break;
     case "twitter":
       passport.authenticate('twitter')(req, res, next)
+      // Twitter has a different way to obtain tokens.. Let passport.js do it. :)
     default:
       next();
    }
