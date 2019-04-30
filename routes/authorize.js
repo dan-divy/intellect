@@ -21,14 +21,13 @@ router.get('/:oauth_service', function(req, res, next) {
       res.redirect(authConf.facebook.auth_url);
       break;
     case "twitter":
-      //res.redirect(authConf.twitter.auth_url)
       passport.authenticate('twitter')(req, res, next)
     default:
       next();
    }
 });
 
-router.post('/spruce',(req, res) => {
+router.post('/spruce', (req, res) => {
    passport.authenticate('local',(error, user) => {
      req.session.user = user;
      res.redirect("/")
