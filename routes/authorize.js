@@ -46,7 +46,7 @@ router.get('/login', (req, res) => {
 router.get('/new', (req, res) => {
   res.render('auth/signup', {error:false});
 })
-
+/**
 router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
   req.session.user = req.session.passport.user._json;
   res.redirect("/");
@@ -67,6 +67,26 @@ router.get("/auth/twitter/callback", passport.authenticate("twitter"), (req, res
   req.session.user = req.session.passport.user._json;
   res.redirect("/");
 });
+**/
+
+router.get("/auth/:service/callback", (req, res, next) => {
+  switch (req.params.service) {
+    case "google":
+      passport.authenticate("google")(req, res, next);
+      break;
+    case "twitter":
+      passport.authenticate("twitter")(req, res, next);
+      break;
+    case "facebook":
+      passport.authenticate("facebook")(req, res, next);
+      break;
+    default:
+       res.send('Wrong service provider.')
+  }
+}, (req, res) => {
+  req.session.user = req.session.passport.user._json;
+  res.redirect("/");
+})
 
 /** logout. **/
 router.get('/logout', function(req, res, next) {
