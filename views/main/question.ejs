@@ -2,9 +2,45 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>intellect/ask</title>
+    <title>intellect/home</title>
+    <%- include("../header") -%>
   </head>
   <body>
+    <%- include("../navbar") -%>
+    <br>
+    <div class="container-fluid">
+      <% if(questions) { %>
+        <% for(var i=0;i<questions.length;i++) { %>
+          <%= questions[i] %>
+        <% } %>
+      <% } %>
+    </div>
+    <div class="container">
+      <form action="/ask" method="post" enctype="multipart/form-data">
+          <input type="text" name="question" class="form-control" placeholder="your_question_goes_here"/>
+          <br>
+          <select class="form-control float-left" style="width:30%;" name="points">
+            <option value="10">10</option>
+            <option value="10">20</option>
+            <option value="10">30</option>
+            <option value="10">50</option>
+          </select>
 
+          <select class="form-control float-right" style="width:69%;" name="subject">
+            <option value="1">General Knowledge</option>
+            <option value="2">English</option>
+            <option value="3">Maths</option>
+            <option value="4">Physics</option>
+            <option value="5">Chemistry</option>
+            <option value="6">Biology</option>
+            <option value="7">History</option>
+            <option value="8">Political science</option>
+            <option value="9">Geography</option>
+          </select>
+          <br><br><br>
+          <button type="submit" name="button" class="btn btn-action btn-info">Submit</button>
+      </form>
+    </div>
+  <%- include("../footer") %>
   </body>
 </html>

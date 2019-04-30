@@ -12,8 +12,8 @@ var question = new mongoose.Schema({
      type:Array
    },
    subject:{
-     type:Number,
-     default:1
+     type:String,
+     default:"General Knowledge"
    },
    date: {
       type: Date,

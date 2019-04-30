@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 })
 
 /** POST A QUESTION HERE **/
-router.post('/', formParser, (req, res) => {
+router.post('/',formParser, (req, res) => {
   console.log(req.body);
   var newQuestion = new Question({
     question:req.body.question,
@@ -43,7 +43,12 @@ router.post('/', formParser, (req, res) => {
     views:0
   })
   newQuestion.save((err, q) => {
+    if(err) {
+      console.error(err);
+      return;
+    }
     res.redirect('/q/')
+
   })
 })
 
