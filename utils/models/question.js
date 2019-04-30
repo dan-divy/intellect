@@ -13,7 +13,7 @@ var question = new mongoose.Schema({
    },
    subject:{
      type:Number,
-     default:0
+     default:1
    },
    date: {
       type: Date,
