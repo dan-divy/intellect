@@ -47,7 +47,7 @@ router.post('/',formParser, (req, res) => {
       console.error(err);
       return;
     }
-    res.redirect(`/q/${q._id}`);
+    res.redirect(`/questions/${q._id}`);
   })
 })
 
