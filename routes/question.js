@@ -47,8 +47,7 @@ router.post('/',formParser, (req, res) => {
       console.error(err);
       return;
     }
-    res.redirect('/q/')
-
+    res.redirect(`/q/${q._id}`);
   })
 })
 
