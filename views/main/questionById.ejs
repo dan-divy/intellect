@@ -19,14 +19,18 @@
         <div class="container">
           <% for(var i=0;i<question.answers.length;i++) { %>
             <blockquote>
-
+              <%= question.answers[i].answer %>
             </blockquote>
+            <span class="text-muted" style="font-size:14px;">Answer given by <%= question.answers[i].by %> <%= question.answers[i].date %></span>
           <% } %>
         </div>
         <br>
+        <form action="/question/<%= question._id %>"  enctype="multipart/form-data" method="post">
         <textarea name="answer" class="form-control" placeholder="answer_goes_here"></textarea>
         <br>
         <button type="submit" class="btn btn-action btn-warning">ANSWER AS @<%= user.username %></button>
+      </form>
+
       <% } %>
     </div>
 

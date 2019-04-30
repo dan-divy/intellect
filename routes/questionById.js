@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
     .exec((err, obj) => {
       console.log(req.session.user)
       obj.timeago = ta.ago(obj.date);
-      
+
       res.render('main/questionById',{
         question:obj,
         user:req.session.user
@@ -33,6 +33,28 @@ else {
   }
 })
 
+/** POST AN ANSWER **/
+router.post('/:id', formParser, (req, res) => {
+  var query = req.params.id;
+  if(query) {
+    Question
+    .findOne({_id:query})
+    .exec((err, obj) => {
+      obj.answers.push({
+        answer:req.body.answer,
+        by:req.session.user.username,
+        date:Date.now
+      })
+      obj = Question(obj);
+      obj.save((err, result) => {
+        res.redirect(`/question/${result._id}`);
+      })
+    })
+ }
+else {
+    res.redirect('/ask')
+  }
+})
 
 // Expose the Express HTTP `index` router to main app.
 module.exports = router;
