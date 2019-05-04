@@ -8,14 +8,36 @@
   <body>
     <%- include("../navbar") -%>
     <br>
-    <div class="container-fluid">
+    <div class="container">
+      <form action="/ask" method="get">
+        <input type="text" name="q" class="form-control" placeholder="your_search"/>
+      </form>
+      <br>
       <% if(questions) { %>
+        <ul class="list-group">
         <% for(var i=0;i<questions.length;i++) { %>
-          <%= questions[i] %>
+            <li class="list-group-item">
+              <a href="/question/<%= questions[i]._id %>">
+                <%= questions[i].question %>
+                <% if(questions[i].subject == "General Knowledge") { %>
+                  <span class="float-right dark">G.K.</span>
+                <% } %>
+                <% if(questions[i].subject != "General Knowledge") { %>
+                  <span class="float-right dark"><%= questions[i].subject %></span>
+                  <% } %>
+              <br>
+              <span class="text-muted">
+                <%= questions[i].answers.length %> Answer<% if(questions[i].answers.length > 1) { %>s<% } %>
+              </span>
+              </a>
+            </li>
         <% } %>
+        </ul>
       <% } %>
     </div>
     <div class="container">
+
+      <br>
       <form action="/ask" method="post" enctype="multipart/form-data">
           <input type="text" name="question" class="form-control" placeholder="your_question_goes_here"/>
           <br>
