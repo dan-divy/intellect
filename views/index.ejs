@@ -21,7 +21,21 @@
     </div>
     <br>
     <div class="container-fluid">
-      <button type="button" name="button" class="btn btn-primary" onclick="window.changeTheme();">Dark</button>
+        <button type="button" name="button" class="btn btn-primary" onclick="window.changeTheme();">Dark</button><br><br>
+      <div style="margin-left:5%" class="row">
+        <div class="col-md-12">
+          <h1>Questions: </h1>
+        </div>
+          <%- questions.map(q => `
+            <div style="margin-top:20px" class="col-md-6">
+              <blockquote>
+                  <a href="/question/${q.id}">${q.question}</a>
+                  <br>
+                  <span class="text-muted" style="font-size:14px;">Asked by ${q.by} ${q.timeago}</span>
+              </blockquote>
+            </div>
+          `).join('') %>
+        </div>
     </div>
   <%- include("footer") %>
   </body>

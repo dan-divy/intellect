@@ -165,7 +165,8 @@ a {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	overflow: hidden;
+  overflow: hidden;
+  z-index: 99999;
 }
 .box .b{
 		border-radius: 50%;
