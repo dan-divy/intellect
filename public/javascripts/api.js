@@ -26,6 +26,3 @@ Intellect.init = function () {
   });
 
 };
-window.onload = function() {
-  Intellect.init()
-}
