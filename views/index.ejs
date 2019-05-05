@@ -27,28 +27,8 @@
       </h4>
     </div>
     <br>
-<<<<<<< HEAD
-    <div class="container-fluid">
-        <button type="button" name="button" class="btn btn-primary" onclick="window.changeTheme();">Dark</button><br><br>
-      <div style="margin-left:5%" class="row">
-        <div class="col-md-12">
-          <h1>Questions: </h1>
-        </div>
-          <%- questions.map(q => `
-            <div style="margin-top:20px" class="col-md-6">
-              <blockquote>
-                  <a href="/question/${q.id}">${q.question}</a>
-                  <br>
-                  <span class="text-muted" style="font-size:14px;">Asked by ${q.by} ${q.timeago}</span>
-              </blockquote>
-            </div>
-          `).join('') %>
-        </div>
-    </div>
-=======
 
     <script src="/javascripts/api.js"></script>
->>>>>>> b60c2e7de2df7b55b40fc6da04055f23acef4644
   <%- include("footer") %>
   </body>
 </html>
