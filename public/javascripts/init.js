@@ -10,6 +10,7 @@ window.addEventListener('load',function () {
         break;
       //default: window.toggleLightMode();
     }
+    Intellect.init()
 
 });
 

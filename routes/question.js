@@ -15,9 +15,17 @@ const authConf = require('../config/oauth');
 /** QUESTIONS HOME PAGE **/
 router.get('/', (req, res) => {
   var query = req.query.q;
+
   if(query) {
+    var regx = '^'+query+".*";
+    var opt = {
+      $or:[
+        {question:{$regex:regx}},
+        {subject:{$regex:regx}}
+      ]
+    }
     Question
-    .find({})
+    .find(opt)
     .exec((err, obj) => {
       res.render('main/question',{
         questions:obj
