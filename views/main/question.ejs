@@ -8,7 +8,8 @@
   <body>
     <%- include("../navbar") -%>
     <br>
-    <div class="container">
+    <div class="container box-shadow">
+      <h3>Search for similar questions</h3><br>
       <form action="/ask" method="get">
         <input type="text" name="q" class="form-control" placeholder="your_search"/>
       </form>
@@ -35,8 +36,9 @@
         </ul>
       <% } %>
     </div>
-    <div class="container">
-
+    <br>
+    <div class="container box-shadow">
+      <h3>Ask Your Question</h3>
       <br>
       <form action="/ask" method="post" enctype="multipart/form-data">
           <input type="text" name="question" class="form-control" placeholder="your_question_goes_here" required/>
@@ -63,6 +65,7 @@
           <button type="submit" name="button" class="btn btn-action btn-info">Submit</button>
       </form>
     </div>
+    <br><br>
   <%- include("../footer") %>
   </body>
 </html>
