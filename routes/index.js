@@ -12,7 +12,7 @@ const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('a4c4e845fea64f9e9c72541aa354a29e').v2;
 
 /** Home page. **/
-router.get('/',isLoggedIn, function(req, res, next) {
+router.get('/',function(req, res, next) {
   // Once user has logged in, show the home page.
   Question
     .find({})
@@ -37,15 +37,6 @@ router.get('/',isLoggedIn, function(req, res, next) {
  */
 
 // route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.session.user)
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/authorize');
-}
 
 // Expose the Express HTTP `index` router to main app.
 module.exports = router;

@@ -17,6 +17,7 @@ var authRouter = require('./routes/authorize');
 var questionRouter = require('./routes/question');
 var questionByIdRouter = require('./routes/questionById');
 var apiRouter = require('./routes/api/v1');
+var searchRouter = require('./routes/search');
 
 var app = express();
 app.conf = require('./config/app')
@@ -46,12 +47,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+function isLoggedIn(req, res, next) {
+  if (req.session.user) return next();
+  if(!req.url.startsWith('/authorize')) return res.redirect('/authorize');
+  next();
+}
 
-app.use('/', indexRouter);
+app.use(isLoggedIn);
+app.use('/', isLoggedIn, indexRouter);
 app.use('/authorize', authRouter);
+app.use('/api', apiRouter);
 app.use('/ask', questionRouter);
 app.use('/question', questionByIdRouter);
-app.use('/api', apiRouter)
+app.use('/search', searchRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

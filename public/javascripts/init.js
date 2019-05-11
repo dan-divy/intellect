@@ -60,3 +60,13 @@ window.checkLoadOut = function() {
       $('.box')[0].style.display == 'none';
     }
 }
+function openBar() {
+  if($('#search-bar').hasClass('show-bar') && $('#search-bar').val().length > 0) {
+    return window.location.href = '/search?q=' + $('#search-bar').val()
+  }
+
+  $('#search-bar').toggleClass('show-bar');
+
+
+  return false;
+}
