@@ -10,6 +10,7 @@ window.addEventListener('load',function () {
         break;
       //default: window.toggleLightMode();
     }
+
     Intellect.init()
 
 });
@@ -28,6 +29,7 @@ window.changeTheme = function () {
     //default: window.toggleLightMode();
   }
 }
+window.oldBrowser = false;
 $.ajax({
   headers: {
     Accept: "text/plain; charset=utf-8",
@@ -36,20 +38,25 @@ $.ajax({
   method: 'GET',
   url:"https://icanhazdadjoke.com/slack",
   success : function(response) {
-    document.getElementById("quote").innerHTML = `<a href="${response.attachments[0].footer.split('<')[1].split('|')[0]}">"${response.attachments[0].text}"</a>`;
+    document.getElementById("quote").innerHTML = `<a style="color:black;" href="${response.attachments[0].footer.split('<')[1].split('|')[0]}">"${response.attachments[0].text}"</a>`;
         console.log(response)
     setTimeout(function () {
       $('.box').fadeOut('slow');
+      window.checkLoadOut();
     }, 2000); // Time taken to quickly read the joke.
   },
   error: function (response) {
     $("#quote").text('"Maturity is when you understand that you are imature."');
     setTimeout(function () {
       $('.box').fadeOut('slow');
+      window.checkLoadOut();
     }, 2000); // Time taken to quickly read the joke.
 }
 });
 
-/** window.onload = function() {
-  $('.box').fadeOut('slow');
-}**/
+window.checkLoadOut = function() {
+   if($('.box')[0].style.display !== 'none') {
+     window.oldBrowser = true;
+      $('.box')[0].style.display == 'none';
+    }
+}
