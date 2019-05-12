@@ -10,4 +10,15 @@
 <link rel="icon" href="/images/logo/animal.png" />
 <!-- Include local stylesheet -->
 <link rel='stylesheet' href='/stylesheets/style.css' />
-<!-- SCRIPTS -->
+<!-- SCRIPTS FOR NOTIFICATIONS -->
+
+<link rel="manifest" href="/manifest.json" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "799d4e96-13b2-4541-acb4-382826349089",
+    });
+  });
+</script>
