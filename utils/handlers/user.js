@@ -52,6 +52,7 @@ function createNew(obj, cb) {
                     posts:[],
                     followers:[],
                     lastLogin:new Date(),
+                    notifications: [],
                 });
                 newUser.password = newUser.generateHash(obj.password)
                 newUser.save((err, res) => {

@@ -6,6 +6,7 @@ var passport = require("passport");
 var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
+var User = require('../utils/models/user');
 const Question = require('../utils/models/question');
 const formParser = require('../utils/form-parser');
 
@@ -44,6 +45,20 @@ router.post('/:id', formParser, (req, res) => {
         answer:req.body.answer,
         by:req.session.user.username,
         date:Date.now
+      })
+      User
+      .findOne({'local.username': obj.by })
+      .exec((error, user) => {
+
+        if(!user.local.notifications) user.local.notifications = [];
+        user.local.notifications.push({
+          answer:req.body.answer,
+          by:req.session.user.username,
+          date:Date.now
+        })
+        user = User(user);
+        user.save((err, result) => {})
+        console.log(user);
       })
       obj = Question(obj);
       obj.save((err, result) => {
