@@ -64,9 +64,11 @@ function openBar() {
   if($('#search-bar').hasClass('show-bar') && $('#search-bar').val().length > 0) {
     return window.location.href = '/search?q=' + $('#search-bar').val()
   }
-
+  $('#search-bar').fadeIn('slow');
   $('#search-bar').toggleClass('show-bar');
-
+  if(!$('#search-bar').hasClass('show-bar')) {
+    $('#search-bar').fadeOut('slow');
+  }
 
   return false;
 }
