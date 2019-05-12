@@ -40,17 +40,17 @@ $.ajax({
   success : function(response) {
     document.getElementById("quote").innerHTML = `<a style="color:black;" href="${response.attachments[0].footer.split('<')[1].split('|')[0]}">"${response.attachments[0].text}"</a>`;
         console.log(response)
-    setTimeout(function () {
-      $('.box').fadeOut('slow');
+    //setTimeout(function () {
+     $('.box').fadeOut('slow');
       window.checkLoadOut();
-    }, 2000); // Time taken to quickly read the joke.
+   // }, 2000); // Time taken to quickly read the joke.
   },
   error: function (response) {
     $("#quote").text('"Maturity is when you understand that you are imature."');
-    setTimeout(function () {
+    //setTimeout(function () {
       $('.box').fadeOut('slow');
       window.checkLoadOut();
-    }, 2000); // Time taken to quickly read the joke.
+    //}, 2000); // Time taken to quickly read the joke.
 }
 });
 
