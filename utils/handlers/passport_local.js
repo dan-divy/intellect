@@ -38,13 +38,14 @@ module.exports = function(passport) {
     },
   function(req, username, password, done) {
 
-    User.findOne({ 'username': username, service: 'local' }, function (err, user) {
+    User.findOne({ 'profile.username': username, 'profile.service': 'local' }, function (err, user) {
       if (err) { return done(err); }
+      console.log(user);
       if(!req.body.firstname || !req.body.lastname) {
         if(user) {
-        bcrypt.compare(password,user.password, (error ,matches)=> {
+        bcrypt.compare(password,user.profile.password, (error ,matches)=> {
           if(matches) {
-            return done(null, user);
+            return done(null, user.profile);
           }
           else {
             return done(null, false);
@@ -57,7 +58,7 @@ module.exports = function(passport) {
       }
       if (!user) {
        var newUser = new User();
-        newUser = {
+        newUser.profile = {
           username:username,
           password:newUser.generateHash(password),
           firstname:req.body.firstname,
@@ -65,7 +66,7 @@ module.exports = function(passport) {
           service: 'local'
         }
         newUser.save((err, res) => {
-              return done(null, res);
+              return done(null, res.profile);
         })
 
        }
