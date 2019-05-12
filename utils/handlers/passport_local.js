@@ -38,13 +38,13 @@ module.exports = function(passport) {
     },
   function(req, username, password, done) {
 
-    User.findOne({ 'local.username': username }, function (err, user) {
+    User.findOne({ 'username': username, service: 'local' }, function (err, user) {
       if (err) { return done(err); }
       if(!req.body.firstname || !req.body.lastname) {
         if(user) {
-        bcrypt.compare(password,user.local.password, (error ,matches)=> {
+        bcrypt.compare(password,user.password, (error ,matches)=> {
           if(matches) {
-            return done(null, user.local);
+            return done(null, user);
           }
           else {
             return done(null, false);
@@ -57,14 +57,15 @@ module.exports = function(passport) {
       }
       if (!user) {
        var newUser = new User();
-        newUser.local = {
+        newUser = {
           username:username,
           password:newUser.generateHash(password),
           firstname:req.body.firstname,
-          lastname:req.body.lastname
+          lastname:req.body.lastname,
+          service: 'local'
         }
         newUser.save((err, res) => {
-              return done(null, res.local);
+              return done(null, res);
         })
 
        }
