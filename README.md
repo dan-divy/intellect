@@ -5,7 +5,7 @@ A powerful open-source real-time question and answer platform for students. An a
 
 # Use
 
-Download the APK for Android [here](./bucket/App/Intellect.apk)
+Download the APK for Android [here](./bucket/App/Intellect-v1.0.0.apk)
 
 ## Features
 
