@@ -5,6 +5,7 @@ var router = express.Router();
 var passport = require("passport");
 var ta = require('time-ago');
 var array_tools = require("array-tools");
+const Fuse = require('fuse.js')
 /** Other important utilities **/
 const Question = require('../utils/models/question');
 const formParser = require('../utils/form-parser');
@@ -30,20 +31,39 @@ router.get('/', (req, res, next) => {
     Question
     .find({})
     .exec((err, obj) => {
-        obj = obj.filter(q => 
-            q.question.toLowerCase().includes(query) ||
-            q.subject.toLowerCase().includes(query) ||
-            q.answers.filter(a => a.answer.includes(query) || a.answer.endsWith(query) || a.answer.startsWith(query)).length > 0 ||
-            q.question.toLowerCase().startsWith(query) ||
-            q.subject.toLowerCase().startsWith(query) ||
-            q.question.toLowerCase().endsWith(query) ||
-            q.subject.toLowerCase().endsWith(query)
-        )
-        obj = obj.sort((a, b) => {
+        /*obj = obj.forEach(q => query.split(' ').forEach((word) => {
+          if(
+            q.question.toLowerCase().includes(word) ||
+            q.subject.toLowerCase().includes(word) ||
+            q.answers.filter(a => a.answer.includes(word) || a.answer.endsWith(word) || a.answer.startsWith(word)).length > 0 ||
+            q.question.toLowerCase().startsWith(word) ||
+            q.subject.toLowerCase().startsWith(word) ||
+            q.question.toLowerCase().endsWith(word) ||
+            q.subject.toLowerCase().endsWith(word)
+          ) results.push(q);
+        })
+        )*/
+        var options = {
+          shouldSort: true,
+          threshold: 0.6,
+          location: 0,
+          distance: 100,
+          maxPatternLength: 32,
+          minMatchCharLength: 1,
+          keys: [
+            "question",
+            "subject",
+            "answers.answer"
+          ]
+        };
+        var fuse = new Fuse(obj, options); // "list" is the item array
+        var results = fuse.search(query);
+        /*results = results.sort((a, b) => {
             return b.answers.length - a.answers.length 
-        });
+        });*/
         res.render('main/search',{
-        questions:obj,
+        questions:results,
+        query: query,
         search: true
         });
     })
@@ -62,7 +82,7 @@ router.get('/', (req, res) => {
             return a.answers.length - b.answers.length 
         });
         newQuestions = newQuestions.slice(0, 5);
-        res.render('main/search', {questions:newQuestions, search:false});
+        res.render('main/search', {questions:newQuestions, search:false, query: ""});
     })
 })
 
