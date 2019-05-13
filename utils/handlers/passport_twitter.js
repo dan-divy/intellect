@@ -45,7 +45,7 @@ module.exports = function(passport) {
     // User.findOne won't fire until we have all our data back from Twitter
         process.nextTick(function() {
 
-            User.findOne({ 'id' : profile.id, service: 'twitter' }, function(err, user) {
+            User.findOne({ 'profile.id' : profile.id, 'profile.service': 'twitter' }, function(err, user) {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
@@ -58,12 +58,13 @@ module.exports = function(passport) {
                 } else {
                     // if there is no user, create them
                     var newUser = new User();
-                    newUser = {id:profile.id,token,username:profile.username,displayName:profile.displayName, service: 'twitter'}
+                    newUser.profile = {id:profile.id,token,username:profile.username,displayName:profile.displayName, service: 'twitter'};
+                    //newUser = {id:profile.id,token,username:profile.username,displayName:profile.displayName, service: 'twitter'}
                     // save our user into the database
                     newUser.save(function(err, result) {
                         if (err)
                             throw err;
-                        return done(null, result);
+                        return done(null, result.profile);
                     });
                 }
             });
