@@ -3,6 +3,10 @@
 Deployed on a DigitalOcean droplet [here](http://intellect.dancodes.online/).                                            
 A powerful open-source real-time question and answer platform for students. An alternate for [Brainly](http://brainly.co) built with Node.js and MongoDB
 
+# Use
+
+Download the APK for Android [here](./bucket/App/Intellect.apk)
+
 ## Features
 
 * Sign in using local authentication,Twitter, Facebook or Google.

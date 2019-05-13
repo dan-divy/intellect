@@ -63,3 +63,4 @@ typings/
 
 .vscode/sftp.json
 config/app.json
+bucket/App/my-release-key.keystore
