@@ -54,10 +54,14 @@ window.changeTheme = function () {
   }
 }
 window.oldBrowser = false;
+
+$('.box').fadeOut('slow');
+window.checkLoadOut();
+
 window.checkLoadOut = function() {
    if($('.box')[0].style.display !== 'none') {
      window.oldBrowser = true;
-      $('.box')[0].style.display == 'none';
+    $('.box')[0].style.display = 'none';
     }
 }
 //alert('hi')
@@ -65,9 +69,11 @@ function openBar() {
   if($('#search-bar').hasClass('show-bar') && $('#search-bar').val().length > 0) {
     return window.location.href = '/search?q=' + $('#search-bar').val()
   }
-
+  $('#search-bar').fadeIn('slow');
   $('#search-bar').toggleClass('show-bar');
-
+  if(!$('#search-bar').hasClass('show-bar')) {
+    $('#search-bar').fadeOut('slow');
+  }
 
   return false;
 }
