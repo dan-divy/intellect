@@ -184,6 +184,18 @@ a {
 .notify_message-danger{
     background-color: #d9534f;
 }
+.floating {
+  border-radius: 100px;
+  position: absolute;
+  top: 90%;
+  left: 89%;
+  transform: translate(-50%,-50%);
+  overflow: hidden;
+  z-index: 99999;
+  background-color: rgb(242,215,71);
+  border-radius:0;
+  border: solid #26B99A;
+}
 .box{
 	width: 200px;
 	height: 200px;
