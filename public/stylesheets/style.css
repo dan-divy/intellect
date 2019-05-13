@@ -13,6 +13,23 @@
 .dark {
   color:#2c3e50;
 }
+
+.as-is {
+  color: white;
+  text-decoration: none;
+
+}
+
+.tab-div {
+  color: white;
+  background: linear-gradient(150deg,#26B99A 10%,rgb(38, 183, 110) 90%); */
+
+}
+.padding {
+  padding-top: 16px;
+  padding-bottom: 35px;
+
+}
 .light {
   color:#fff;
 }
