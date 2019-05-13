@@ -20,20 +20,24 @@ router.get('/', (req, res) => {
     Question
     .find({})
     .exec((err, obj) => {
-        obj = obj.filter(q =>
-            q.question.toLowerCase().includes(query) ||
-            q.subject.toLowerCase().includes(query) ||
-            q.answers.filter(a => a.answer.includes(query) || a.answer.endsWith(query) || a.answer.startsWith(query)).length > 0 ||
-            q.question.toLowerCase().startsWith(query) ||
-            q.subject.toLowerCase().startsWith(query) ||
-            q.question.toLowerCase().endsWith(query) ||
-            q.subject.toLowerCase().endsWith(query)
-        )
-        obj = obj.sort((a, b) => {
-            return b.answers.length - a.answers.length
-        });
+      const Fuse = require('fuse.js')
+      var options = {
+        shouldSort: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          "question",
+          "subject",
+          "answers.answer"
+        ]
+      };
+      var fuse = new Fuse(obj, options); 
+      var results = fuse.search(query);
         res.render('main/question',{
-          questions:obj,
+          questions:results,
           search: true
         });
     })
