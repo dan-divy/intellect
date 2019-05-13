@@ -14,9 +14,36 @@ const authConf = require('../config/oauth');
 
 /** QUESTIONS HOME PAGE **/
 router.get('/', (req, res) => {
+  var query = req.query.q;
+  if(query) {
+    query = query.toLowerCase();
+    Question
+    .find({})
+    .exec((err, obj) => {
+        obj = obj.filter(q =>
+            q.question.toLowerCase().includes(query) ||
+            q.subject.toLowerCase().includes(query) ||
+            q.answers.filter(a => a.answer.includes(query) || a.answer.endsWith(query) || a.answer.startsWith(query)).length > 0 ||
+            q.question.toLowerCase().startsWith(query) ||
+            q.subject.toLowerCase().startsWith(query) ||
+            q.question.toLowerCase().endsWith(query) ||
+            q.subject.toLowerCase().endsWith(query)
+        )
+        obj = obj.sort((a, b) => {
+            return b.answers.length - a.answers.length
+        });
+        res.render('main/question',{
+          questions:obj,
+          search: true
+        });
+    })
+  }
+  else {
     res.render('main/question',{
         questions:false
     })
+  }
+
 })
 
 /** POST A QUESTION HERE **/

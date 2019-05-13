@@ -17,7 +17,6 @@ var authRouter = require('./routes/authorize');
 var questionRouter = require('./routes/question');
 var questionByIdRouter = require('./routes/questionById');
 var apiRouter = require('./routes/api/v1');
-var searchRouter = require('./routes/search');
 
 var app = express();
 app.conf = require('./config/app')
@@ -59,7 +58,6 @@ app.use('/authorize', authRouter);
 app.use('/api', apiRouter);
 app.use('/ask', questionRouter);
 app.use('/question', questionByIdRouter);
-app.use('/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
