@@ -7,7 +7,6 @@ var passport = require("passport");
 var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
-var user = require('../utils/handlers/user');
 const authConf = require('../config/oauth.js');
 
 

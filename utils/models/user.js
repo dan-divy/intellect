@@ -6,8 +6,7 @@ var bcrypt   = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
   profile:Object,
   notifications:{
-    type:Array,
-    default:new Array()
+    type:Array
   }
 });
 

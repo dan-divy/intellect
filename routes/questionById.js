@@ -44,14 +44,14 @@ router.post('/:id', formParser, (req, res) => {
       function makeid(length) {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-      
+
         for (var i = 0; i < length; i++)
           text += possible.charAt(Math.floor(Math.random() * possible.length));
-      
+
         return text;
       }
       var id = makeid(16)
-      console.log(id);
+      console.info(req.session.user);
       obj.answers.push({
         id,
         answer:req.body.answer,
@@ -60,19 +60,18 @@ router.post('/:id', formParser, (req, res) => {
         upvotes: []
       })
       User
-      .findOne({'local.username': obj.by })
-      .exec((error, user) => {
-
-        if(!user.local.notifications) user.local.notifications = [];
-        user.local.notifications.push({
+      .findOne({'profile.username': obj.by })
+      .exec((error, usr) => {
+        if(!usr.notifications) usr.notifications = [];
+        usr.notifications.push({
           answer:req.body.answer,
           by:req.session.user.username,
           date:Date.now
         })
-        user = User(user);
-        user.save((err, result) => {})
-        console.log(user);
-      })
+        usr = User(usr);
+        usr.save((err, result) => {})
+        console.log(usr);
+        })
       obj = Question(obj);
       obj.save((err, result) => {
         res.redirect(`/question/${result._id}`);
@@ -83,6 +82,6 @@ else {
     res.redirect('/ask')
   }
 })
- 
+
 // Expose the Express HTTP `index` router to main app.
 module.exports = router;
