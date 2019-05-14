@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>intellect/home</title>
     <%- include("../header") -%>
+    <link rel="stylesheet" href="/resources/mathquill.css">
   </head>
   <body>
     <%- include("../navbar") -%>
@@ -29,7 +30,12 @@
         </div>
         <br>
         <form action="/question/<%= question._id %>"  enctype="multipart/form-data" method="post">
-        <textarea name="answer" class="form-control" placeholder="answer_goes_here"></textarea>
+          <% if(question.subject == "Maths") { %>
+              <span name="answer" class="form-control" id="math-field" placeholder="answer_goes_here"></span><br>
+          <% } else { %>
+              <textarea name="answer" class="form-control" placeholder="answer_goes_here"></textarea>
+          <% } %>
+
         <br>
         <button type="submit" class="btn btn-action btn-warning">ANSWER AS @<%= user.username %></button>
       </form>
@@ -38,5 +44,22 @@
     </div>
     <script src="/javascripts/upvote.js"></script>
   <%- include("../footer") %>
+
+  <script src="/resources/mathquill.min.js" charset="utf-8"></script>
+  <script>
+  var mathFieldSpan = document.getElementById('math-field');
+//  var latexSpan = document.getElementById('latex');
+
+  var MQ = MathQuill.getInterface(2); // for backcompat
+  var mathField = MQ.MathField(mathFieldSpan, {
+  spaceBehavesLikeTab: true, // configurable
+  handlers: {
+    edit: function() { // useful event handlers
+      //latexSpan.textContent = mathField.latex(); // simple API
+      //console.log(latex.textContent);
+    }
+  }
+  });
+</script>
   </body>
 </html>

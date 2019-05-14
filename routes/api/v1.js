@@ -16,7 +16,6 @@ router.get('/latest', (req, res) => {
 });
 
 router.get('/upvote/:id/:answerID', (req, res) => {
-  console.log('upvote')
   const Qid = req.params.id;
   const Aid = req.params.answerID;
   Question
