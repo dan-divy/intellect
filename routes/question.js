@@ -52,6 +52,7 @@ router.get('/', (req, res) => {
 
 /** POST A QUESTION HERE **/
 router.post('/',formParser, (req, res) => {
+
   console.log(req.body);
   var newQuestion = new Question({
     question:req.body.question,
@@ -59,7 +60,7 @@ router.post('/',formParser, (req, res) => {
     subject:subjectConf[req.body.subject],
     points:req.body.points,
     by:req.session.user.username,
-    views:0
+    views:0,
   })
   newQuestion.save((err, q) => {
     if(err) {

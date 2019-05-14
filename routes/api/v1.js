@@ -15,5 +15,26 @@ router.get('/latest', (req, res) => {
   })
 });
 
+router.get('/upvote/:id/:answerID', (req, res) => {
+  console.log('upvote')
+  const Qid = req.params.id;
+  const Aid = req.params.answerID;
+  Question
+  .find({_id:Qid})
+  .exec((err, data) => {
+    data = data[0]
+    var answer = data.answers.find(x => x.id == Aid);
+    if(answer.upvotes.find(x => x.by.username == req.session.user.username)) {
+      answer.upvotes = answer.upvotes.filter(x => x.by.username != req.session.user.username);
+    } else {
+      answer.upvotes.push({by: req.session.user});
+    }
+    data = Question(data);
+    data.save((err, obj) => {
+      res.send(answer.upvotes);
+    })
+  })
+});
+
 // Expose the Express HTTP `index` router to main app.
 module.exports = router;

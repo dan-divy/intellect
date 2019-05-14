@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     .exec((err, obj) => {
       console.log(req.session.user)
       obj.timeago = ta.ago(obj.date);
-
+      obj.answers = obj.answers.sort((a, b) => a.upvotes.length - b.upvotes.length);
       res.render('main/questionById',{
         question:obj,
         user:req.session.user
@@ -41,10 +41,23 @@ router.post('/:id', formParser, (req, res) => {
     Question
     .findOne({_id:query})
     .exec((err, obj) => {
+      function makeid(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      
+        for (var i = 0; i < length; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+      
+        return text;
+      }
+      var id = makeid(16)
+      console.log(id);
       obj.answers.push({
+        id,
         answer:req.body.answer,
         by:req.session.user.username,
-        date:Date.now
+        date:Date.now,
+        upvotes: []
       })
       User
       .findOne({'local.username': obj.by })
@@ -70,6 +83,6 @@ else {
     res.redirect('/ask')
   }
 })
-
+ 
 // Expose the Express HTTP `index` router to main app.
 module.exports = router;
