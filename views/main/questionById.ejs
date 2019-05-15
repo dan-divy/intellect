@@ -12,7 +12,7 @@
     <div class="container">
       <% if(question) { %>
         <blockquote>
-          <%= question.question %>
+          <%- question.question %>
           <br>
           <span class="text-muted" style="font-size:14px;">Asked by <%= question.by %> <%= question.timeago %></span>
         </blockquote>
@@ -21,7 +21,7 @@
           <% for(var i=0;i<question.answers.length;i++) { %>
             <button <% if(question.answers[i].upvotes.find(x => x.by.username == user.username)) { %> style="padding:0; background: transparent; border: none;color: var(--primary)" <% } %> onclick="upvote('<%=question.id%>/<%= question.answers[i].id %>'); if(this.style.color == 'var(--primary)') {this.style.color = '#2c3e50'} else {this.style.color = 'var(--primary)'}" style="padding:0; background: transparent; border: none; color: #000" class="btn btn-primary"><i class="fa fa-arrow-up"></i></button>
             <blockquote>
-              <%= question.answers[i].answer %>
+              <%- question.answers[i].answer %>
               <br>
 <span class="text-muted" style="font-size:14px;">Answer given by <%= question.answers[i].by %> <%= question.answers[i].date %></span>
             </blockquote>

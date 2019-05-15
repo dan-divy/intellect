@@ -9,6 +9,7 @@ var array_tools = require("array-tools");
 var User = require('../utils/models/user');
 const Question = require('../utils/models/question');
 const formParser = require('../utils/form-parser');
+const textParser = require('../utils/text-parser');
 
 const subjectConf = require('../config/subject')
 const authConf = require('../config/oauth');
@@ -54,7 +55,7 @@ router.post('/:id', formParser, (req, res) => {
       console.info(req.session.user);
       obj.answers.push({
         id,
-        answer:req.body.answer,
+        answer:textParser(req.body.answer),
         by:req.session.user.username,
         date:Date.now,
         upvotes: []

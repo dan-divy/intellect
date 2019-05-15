@@ -8,6 +8,7 @@ var array_tools = require("array-tools");
 /** Other important utilities **/
 const Question = require('../utils/models/question');
 const formParser = require('../utils/form-parser');
+const textParser = require('../utils/text-parser');
 
 const subjectConf = require('../config/subject')
 const authConf = require('../config/oauth');
@@ -34,7 +35,7 @@ router.get('/', (req, res) => {
           "answers.answer"
         ]
       };
-      var fuse = new Fuse(obj, options); 
+      var fuse = new Fuse(obj, options);
       var results = fuse.search(query);
         res.render('main/question',{
           questions:results,
@@ -55,7 +56,7 @@ router.post('/',formParser, (req, res) => {
 
   console.log(req.body);
   var newQuestion = new Question({
-    question:req.body.question,
+    question:textParser(req.body.question),
     answers:[],
     subject:subjectConf[req.body.subject],
     points:req.body.points,
