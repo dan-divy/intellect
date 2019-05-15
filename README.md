@@ -5,7 +5,7 @@ A powerful open-source real-time question and answer platform for students. An a
 
 # Use
 
-Download the latest APK for Android in releases
+Download the apps [here!](https://github.com/DivySrivastava/intellect/releases/latest)
 
 Access online at [intellect.dancodes.online](https://intellect.dancodes.online)
 
