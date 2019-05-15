@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 /** Some useful dependencies **/
 var passport = require("passport");
+const Fuse = require('fuse.js')
 var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
@@ -21,7 +22,6 @@ router.get('/', (req, res) => {
     Question
     .find({})
     .exec((err, obj) => {
-      const Fuse = require('fuse.js')
       var options = {
         shouldSort: true,
         threshold: 0.6,
