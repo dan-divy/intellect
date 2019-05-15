@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>intellect/home</title>
+    <%- include("../header") -%>
+  </head>
+  <body>
+    <%- include("../navbar") -%>
+    <ul class="list-group">
+    <% for(var i = 0; i < data.notifications.length; i++) { %>
+      <li class="list-group-item">
+        <br>
+        <strong><%= data.notifications[i].by %></strong>  answered to your question <%= data.notifications[i].answer %>
+        <br><br>
+      </li>
+    <% } %>
+    </ul>
+    <script src="/javascripts/api.js"></script>
+    <%- include("../tabs") -%>
+    <%- include("../footer") -%>
+  </body>
+</html>
