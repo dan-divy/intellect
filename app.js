@@ -17,7 +17,7 @@ var authRouter = require('./routes/authorize');
 var questionRouter = require('./routes/question');
 var questionByIdRouter = require('./routes/questionById');
 var apiRouter = require('./routes/api/v1');
-var notifyRouter = require('./routes/notification.js')
+var notifyRouter = require('./routes/notification')
 
 var app = express();
 app.conf = require('./config/app')
