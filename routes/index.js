@@ -14,17 +14,11 @@ const newsapi = new NewsAPI('a4c4e845fea64f9e9c72541aa354a29e').v2;
 /** Home page. **/
 router.get('/',function(req, res, next) {
   // Once user has logged in, show the home page.
-  Question
-    .find({})
-    .exec(async (err, obj) => {
-        await obj.forEach(q => {
-            q.timeago = ta.ago(q.date);
-        })
+  console.log(req.session.user)
       res.render('index',{
-        questions:obj,
-        user:{name:req.session.user}
+        user:req.session.user
       });
-});
+
 });
 
 /**

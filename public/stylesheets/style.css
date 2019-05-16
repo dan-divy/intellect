@@ -28,7 +28,9 @@
 .padding {
   padding-top: 16px;
   padding-bottom: 35px;
-
+}
+.active-pill {
+  border-bottom: 5px solid #fff;
 }
 .light {
   color:#fff;
