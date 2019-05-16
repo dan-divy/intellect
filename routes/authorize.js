@@ -34,8 +34,8 @@ router.post('/spruce', (req, res, next) => {
      // DO NOT CHANGE THE BELOW CODE!
   //   res.end("<script>window.location.href='/';</script>");
      // SEE ISSUE FOR DETAILS...
-  //res.redirect('/')
-  next()
+  res.redirect('/')
+
    })(req,res)
 
    //req.session.user = '';

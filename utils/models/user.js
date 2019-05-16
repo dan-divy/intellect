@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 // define the schema for our user model
+mongoose.connect(require('../../config/app').db.connectionUri);
 var userSchema = mongoose.Schema({
   profile:Object,
   notifications:{

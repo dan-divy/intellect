@@ -53,7 +53,7 @@ module.exports = function(passport) {
         })
       }
       else {
-        return done(null,false)
+        return done(null, false)
       }
       }
       if (!user) {
