@@ -49,12 +49,12 @@ app.use(passport.session());
 
 function isLoggedIn(req, res, next) {
   if (req.session.user) return next();
-  //if(!req.url.startsWith('/authorize')) return res.redirect('/authorize');
+  if(!req.url.startsWith('/authorize')) return res.redirect('/authorize');
   next();
 }
 
-app.use(isLoggedIn);
-app.use('/', isLoggedIn, indexRouter);
+//app.use(isLoggedIn);
+app.use('/', indexRouter);
 app.use('/authorize', authRouter);
 app.use('/api', apiRouter);
 app.use('/ask', questionRouter);
