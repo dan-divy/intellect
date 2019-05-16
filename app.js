@@ -9,8 +9,8 @@ var logger = require('morgan');
 
 var passportHandlerLocal = require('./utils/handlers/passport_local')
 var passportHandler = require('./utils/handlers/passport');
-//var passportHandlerFb = require('./utils/handlers/passport_facebook');
-//var passportHandlerTwitter = require('./utils/handlers/passport_twitter');
+var passportHandlerFb = require('./utils/handlers/passport_facebook');
+var passportHandlerTwitter = require('./utils/handlers/passport_twitter');
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authorize');
@@ -34,8 +34,8 @@ var cooky = {
 
 passportHandlerLocal(passport);
 passportHandler(passport);
-//passportHandlerFb(passport);
-//passportHandlerTwitter(passport);
+passportHandlerFb(passport);
+passportHandlerTwitter(passport);
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session(cooky))

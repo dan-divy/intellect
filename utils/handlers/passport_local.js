@@ -53,18 +53,18 @@ module.exports = function(passport) {
         })
       }
       else {
-        done(null,false)
+        return done(null,false)
       }
       }
       if (!user) {
        var newUser = new User();
-      newUser.profile = {
-        username:username,
-        password:newUser.generateHash(password),
-        firstname:req.body.firstname,
-        lastname:req.body.lastname,
-        service: 'local'
-      }
+        newUser.profile = {
+          username:username,
+          password:newUser.generateHash(password),
+          firstname:req.body.firstname,
+          lastname:req.body.lastname,
+          service: 'local'
+        }
         newUser.save((err, res) => {
               return done(null, res.profile);
         })

@@ -27,13 +27,19 @@ router.get('/:oauth_service', function(req, res, next) {
    }
 });
 
-router.post('/spruce', (req, res) => {
+router.post('/spruce', (req, res, next) => {
+  console.log('hi')
    passport.authenticate('local',(error, user) => {
      req.session.user = user;
      // DO NOT CHANGE THE BELOW CODE!
-     res.end("<script>window.location.href='/';</script>");
+  //   res.end("<script>window.location.href='/';</script>");
      // SEE ISSUE FOR DETAILS...
+  //res.redirect('/')
+  next()
    })(req,res)
+
+   //req.session.user = '';
+
 });
 
 router.get('/', (req, res) => {
@@ -47,28 +53,6 @@ router.get('/login', (req, res) => {
 router.get('/new', (req, res) => {
   res.render('auth/signup', {error:false});
 })
-/**
-router.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
-  req.session.user = req.session.passport.user._json;
-  res.redirect("/");
-});
-
-router.get("/auth/twitter/callback", passport.authenticate("twitter"), (req, res) => {
-  req.session.user = req.session.passport.user._json;
-  res.redirect("/");
-});
-
-router.get("/auth/facebook/callback", passport.authenticate("facebook"), (req, res) => {
-  req.session.user = req.session.passport.user._json;
-  res.redirect("/");
-});
-
-
-router.get("/auth/twitter/callback", passport.authenticate("twitter"), (req, res) => {
-  req.session.user = req.session.passport.user._json;
-  res.redirect("/");
-});
-**/
 
 router.get("/auth/:service/callback", (req, res, next) => {
   switch (req.params.service) {

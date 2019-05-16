@@ -5,7 +5,7 @@ var router = express.Router();
 var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
-var user = require('../utils/handlers/user');
+var user = require('../utils/models/user');
 /** NewsAPI for real-time news feeds **/
 const Question = require('../utils/models/question');
 const NewsAPI = require('newsapi');
