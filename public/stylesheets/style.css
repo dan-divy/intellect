@@ -32,6 +32,10 @@
 .active-pill {
   border-bottom: 5px solid #fff;
 }
+.pill:hover,
+.pill:focus {
+  border-bottom: 5px solid #fff;
+}
 .light {
   color:#fff;
 }
