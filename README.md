@@ -3,6 +3,8 @@
 Deployed on a DigitalOcean droplet [here](http://intellect.dancodes.online/).                                            
 A powerful open-source real-time question and answer platform for students. An alternate for [Brainly](http://brainly.co) built with Node.js and MongoDB
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4f58c7554deb4a73b64481749ad74122)](https://www.codacy.com/app/DivySrivastava/intellect?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DivySrivastava/intellect&amp;utm_campaign=Badge_Grade)
+
 # Use
 
 Download the apps [here!](https://github.com/DivySrivastava/intellect/releases/latest)
