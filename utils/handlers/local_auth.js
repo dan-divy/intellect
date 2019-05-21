@@ -17,8 +17,10 @@ class Register {
     .findOne({
       'profile.username':this.username,
       'profile.service':'local'
-    }, (err, profile) => {
-      if(err) return cb(err)
+    }).then((err, profile) => {
+      if(err) return cb(err);
+      if(profile) return cb(null, false);
+      else {
       var newUser = new User()
       newUser.profile = {
         username:this.username,
@@ -30,7 +32,11 @@ class Register {
       newUser.save((error, done) => {
         return cb(null, done)
       })
+    }
 
+    })
+    .catch((e) => {
+      return cb(e);
     })
   }
 
@@ -44,23 +50,33 @@ class Login {
     .findOne({
       'profile.username':this.username,
       'profile.service':'local'
-    },(err, profile) => {
-      if(err) return cb(err)
-      console.log(bcrypt.compareSync(this.password, profile.password))
-      bcrypt.compare(this.password, profile.password,(error ,matches) => {
-        if(matches) {
-          return cb(null, profile.profile);
-        }
-        else {
-          return cb(null, false);
-        }
-      })
+    })
+    .then((profile) => {
+      if(profile) {
+        //console.log(bcrypt.compareSync(this.password, profile.password))
+        console.log('Done')
+        bcrypt.compare(this.password, profile.password,(error ,matches) => {
+          if(matches) {
+            return cb(null, profile.profile);
+          }
+          else {
+            return cb(null, false);
+          }
+        })
+      }
+     })
+     .catch(() => {
+
      })
   }
 
 }
 
-
+module.exports = {
+  login:new Login,
+  register:new Register
+}
+/**
 new Login({
   body: {
     username:"undefined_void",
@@ -73,3 +89,4 @@ new Login({
   //if(!done) res.render('auth/login')
   console.log(done)
 })
+**/
