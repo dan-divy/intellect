@@ -51,7 +51,7 @@ function isLoggedIn(req, res, next) {
   next();
 }
 
-//app.use(isLoggedIn);
+app.use(isLoggedIn);
 app.use('/', indexRouter);
 app.use('/authorize', authRouter);
 app.use('/api', apiRouter);
