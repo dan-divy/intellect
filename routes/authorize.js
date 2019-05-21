@@ -59,7 +59,7 @@ router.get("/auth/:service/callback", (req, res, next) => {
       passport.authenticate("facebook")(req, res, next);
       break;
     default:
-       res.send('Wrong service provider.')
+       res.send('Service provider not found! Error: Could not find ' + req.params.service)
   }
 }, (req, res) => {
   req.session.user = req.session.passport.user._json;
