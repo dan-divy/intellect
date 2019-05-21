@@ -41,6 +41,7 @@ class Register {
   }
 
 }
+
 class Login {
   constructor(request, cb) {
     // LOGIN CODE HERE
@@ -53,9 +54,7 @@ class Login {
     })
     .then((profile) => {
       if(profile) {
-        //console.log(bcrypt.compareSync(this.password, profile.password))
-        console.log('Done')
-        bcrypt.compare(this.password, profile.password,(error ,matches) => {
+        bcrypt.compare(this.password, profile.profile.password,(error ,matches) => {
           if(matches) {
             return cb(null, profile.profile);
           }
@@ -64,29 +63,28 @@ class Login {
           }
         })
       }
+      else {
+        return cb(null, false);
+      }
      })
-     .catch(() => {
-
+     .catch((e) => {
+       return cb(e);
      })
   }
 
+}
+
+function expressLogin(req, res, next) {
+  if(req && res && next) {
+   new Login(req, (err, done) => {
+    if(err) return res.redirect('/authorize?error=internal');
+    if(!done) return res.redirect('/authorize?error=wrong_credentials');
+    req.session.user = done;
+    return next();
+  })
+}
 }
 
 module.exports = {
-  login:new Login,
-  register:new Register
+  login:Login
 }
-/**
-new Login({
-  body: {
-    username:"undefined_void",
-    password:"123",
-    firstname:"S",
-    lastname:"S"
-  }
-}, (err, done) => {
-  if(err) throw console.error(err);
-  //if(!done) res.render('auth/login')
-  console.log(done)
-})
-**/

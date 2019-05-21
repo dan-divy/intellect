@@ -8,7 +8,7 @@ var ta = require('time-ago');
 var array_tools = require("array-tools");
 /** Other important utilities **/
 const authConf = require('../config/oauth.js');
-
+var localAuthHandler = require('../utils/handlers/local_auth');
 
 router.get('/:oauth_service', function(req, res, next) {
   // Redirect to the OAuth service page.
@@ -27,18 +27,14 @@ router.get('/:oauth_service', function(req, res, next) {
    }
 });
 
-router.post('/spruce', (req, res, next) => {
-  console.log('hi')
-   passport.authenticate('local',(error, user) => {
-     req.session.user = user;
-     // DO NOT CHANGE THE BELOW CODE!
-  //   res.end("<script>window.location.href='/';</script>");
-     // SEE ISSUE FOR DETAILS...
-  res.redirect('/')
-
-   })(req,res)
-
-   //req.session.user = '';
+router.post('/intellect', (req, res, next) => {
+  new localAuthHandler.login(req, (err, done) => {
+    console.log(done)
+   if(err) return res.redirect('/authorize?error=internal');
+   if(!done) return res.redirect('/authorize?error=wrong_credentials');
+   req.session.user = done;
+   res.redirect('/')
+  })
 
 });
 
