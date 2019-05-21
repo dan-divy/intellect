@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var passportHandlerLocal = require('./utils/handlers/passport_local')
 var passportHandler = require('./utils/handlers/passport');
 var passportHandlerFb = require('./utils/handlers/passport_facebook');
 var passportHandlerTwitter = require('./utils/handlers/passport_twitter');
@@ -32,7 +31,6 @@ var cooky = {
   	saveUninitialized: true
 }
 
-passportHandlerLocal(passport);
 passportHandler(passport);
 passportHandlerFb(passport);
 passportHandlerTwitter(passport);
