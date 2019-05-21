@@ -77,14 +77,26 @@ class Login {
 function expressLogin(req, res, next) {
   if(req && res && next) {
    new Login(req, (err, done) => {
-    if(err) return res.redirect('/authorize?error=internal');
-    if(!done) return res.redirect('/authorize?error=wrong_credentials');
+    if(err) return res.redirect('/authorize/login?error=internal');
+    if(!done) return res.redirect('/authorize/login?error=wrong_credentials');
     req.session.user = done;
     return next();
   })
+ }
 }
+
+function expressSignup(req, res, next) {
+  if(req && res && next) {
+   new Register(req, (err, done) => {
+    if(err) return res.redirect('/authorize/new?error=internal');
+    if(!done) return res.redirect('/authorize/new?error=exists');
+    req.session.user = done;
+    return next();
+  })
+ }
 }
 
 module.exports = {
-  login:Login
+  login:expressLogin,
+  register:expressSignup
 }

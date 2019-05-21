@@ -27,15 +27,12 @@ router.get('/:oauth_service', function(req, res, next) {
    }
 });
 
-router.post('/intellect', (req, res, next) => {
-  new localAuthHandler.login(req, (err, done) => {
-    console.log(done)
-   if(err) return res.redirect('/authorize?error=internal');
-   if(!done) return res.redirect('/authorize?error=wrong_credentials');
-   req.session.user = done;
-   res.redirect('/')
-  })
+router.post('/intellect/login',localAuthHandler.login, (req, res, next) => {
+  res.redirect('/');
+});
 
+router.post('/intellect/register',localAuthHandler.register, (req, res, next) => {
+  res.redirect('/');
 });
 
 router.get('/', (req, res) => {
