@@ -5,6 +5,9 @@ A powerful open-source real-time question and answer platform for students. An a
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4f58c7554deb4a73b64481749ad74122)](https://www.codacy.com/app/DivySrivastava/intellect?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DivySrivastava/intellect&amp;utm_campaign=Badge_Grade)
 
+### Depreciation notice
+This project is no longer maintained.
+
 # Use
 
 Download the apps [here!](https://github.com/DivySrivastava/intellect/releases/latest)
